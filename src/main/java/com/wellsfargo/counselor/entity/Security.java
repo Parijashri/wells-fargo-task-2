@@ -9,17 +9,20 @@ public class Security {
     @GeneratedValue()
     private long securityId;
 
+    @ManyToOne
+    private Portfolio portfolio;
+
     @Column(nullable = false)
-    private String securityName;
+    private String name;
 
     @Column(nullable = false)
     private String category;
 
     @Column(nullable = false)
-    private String purchaseDate;
+    private double purchasePrice;
 
     @Column(nullable = false)
-    private double purchasePrice;
+    private String purchaseDate;
 
     @Column(nullable = false)
     private int quantity;
@@ -27,15 +30,14 @@ public class Security {
     protected Security() {
     }
 
-    public Security(String securityName,
-                    String category,
-                    String purchaseDate,
-                    double purchasePrice,
+    public Security(Portfolio portfolio, String name, String category,
+                    double purchasePrice, String purchaseDate,
                     int quantity) {
-        this.securityName = securityName;
+        this.portfolio = portfolio;
+        this.name = name;
         this.category = category;
-        this.purchaseDate = purchaseDate;
         this.purchasePrice = purchasePrice;
+        this.purchaseDate = purchaseDate;
         this.quantity = quantity;
     }
 
@@ -43,12 +45,20 @@ public class Security {
         return securityId;
     }
 
-    public String getSecurityName() {
-        return securityName;
+    public Portfolio getPortfolio() {
+        return portfolio;
     }
 
-    public void setSecurityName(String securityName) {
-        this.securityName = securityName;
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCategory() {
@@ -59,20 +69,20 @@ public class Security {
         this.category = category;
     }
 
-    public String getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(String purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-
     public double getPurchasePrice() {
         return purchasePrice;
     }
 
     public void setPurchasePrice(double purchasePrice) {
         this.purchasePrice = purchasePrice;
+    }
+
+    public String getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
     public int getQuantity() {
