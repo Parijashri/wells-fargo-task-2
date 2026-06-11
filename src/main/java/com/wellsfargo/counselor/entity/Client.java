@@ -9,42 +9,68 @@ public class Client {
     @GeneratedValue()
     private long clientId;
 
-    @Column(nullable = false)
-    private String clientName;
+    @ManyToOne
+    private Advisor advisor;
 
     @Column(nullable = false)
-    private String dob;
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
 
     @Column(nullable = false)
     private String address;
 
+    @Column(nullable = false)
+    private String phone;
+
+    @Column(nullable = false)
+    private String email;
+
+    @OneToOne
+    private Portfolio portfolio;
+
     protected Client() {
     }
 
-    public Client(String clientName, String dob, String address) {
-        this.clientName = clientName;
-        this.dob = dob;
+    public Client(Advisor advisor, String firstName, String lastName,
+                  String address, String phone, String email,
+                  Portfolio portfolio) {
+        this.advisor = advisor;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.portfolio = portfolio;
     }
 
     public Long getClientId() {
         return clientId;
     }
 
-    public String getClientName() {
-        return clientName;
+    public Advisor getAdvisor() {
+        return advisor;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setAdvisor(Advisor advisor) {
+        this.advisor = advisor;
     }
 
-    public String getDob() {
-        return dob;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setDob(String dob) {
-        this.dob = dob;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {
@@ -53,5 +79,29 @@ public class Client {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
     }
 }
