@@ -1,6 +1,7 @@
 package com.wellsfargo.counselor.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Portfolio {
@@ -9,37 +10,50 @@ public class Portfolio {
     @GeneratedValue()
     private long portfolioId;
 
-    @Column(nullable = false)
-    private String createdDate;
+    @OneToOne
+    private Client client;
 
     @Column(nullable = false)
-    private double portfolioValue;
+    private String creationDate;
+
+    @OneToMany
+    private List<Security> securities;
 
     protected Portfolio() {
     }
 
-    public Portfolio(String createdDate, double portfolioValue) {
-        this.createdDate = createdDate;
-        this.portfolioValue = portfolioValue;
+    public Portfolio(Client client, String creationDate,
+                     List<Security> securities) {
+        this.client = client;
+        this.creationDate = creationDate;
+        this.securities = securities;
     }
 
     public Long getPortfolioId() {
         return portfolioId;
     }
 
-    public String getCreatedDate() {
-        return createdDate;
+    public Client getClient() {
+        return client;
     }
 
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
-    public double getPortfolioValue() {
-        return portfolioValue;
+    public String getCreationDate() {
+        return creationDate;
     }
 
-    public void setPortfolioValue(double portfolioValue) {
-        this.portfolioValue = portfolioValue;
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public List<Security> getSecurities() {
+        return securities;
+    }
+
+    public void setSecurities(List<Security> securities) {
+        this.securities = securities;
     }
 }
